@@ -1,0 +1,23 @@
+GeographicRegionId,MarketGroupId,GeographicRegionName
+1,1,SF Bay
+2,1,LA Area
+3,2,Other Carrib
+4,2,PR
+5,2,DR
+6,2,Colombia
+7,3,WAS
+8,3,The South
+9,4,Mtn West
+10,4,Desert West
+11,4,Pac NW
+12,5,NYC
+13,5,Upstate
+14,5,BOS Area
+15,5,MidWest
+16,5,NE Islands
+17,6,PBI
+18,6,MCO
+19,6,Gulf
+20,6,Texas
+21,6,FLL
+22,4,ANC
