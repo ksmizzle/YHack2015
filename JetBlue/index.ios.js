@@ -35,6 +35,49 @@ var JetBlue = React.createClass({
   },
 
   fetchData: function() {
+    const data = [
+      {
+        date: "Jan. 19",
+        price: 249,
+        tripData: {
+          origin: {
+            airportCode: "BOS",
+            geographicRegion: "Northeast",
+            marketGroup: "East Coast"
+          },
+          destination: {
+            airportCode: "IAD",
+            geographicRegion: "Mid-Atlantic",
+            marketGroup: "East Coast"
+          },
+          destinationType: "Family"
+        }
+      },
+      {
+        date: "Feb. 4",
+        price: 125,
+        tripData: {
+          origin: {
+            airportCode: "ORD",
+            geographicRegion: "Midwest",
+            marketGroup: "Middle"
+          },
+          destination: {
+            airportCode: "SFO",
+            geographicRegion: "California",
+            marketGroup: "West Coast"
+          },
+          destinationType: "Romance"
+        }
+      }
+    ]
+
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(data),
+      loaded: true
+    })
+
+    /*
     fetch(REQUEST_URL)
       .then((response) => response.json())
       .then((responseData) => {
@@ -44,6 +87,7 @@ var JetBlue = React.createClass({
         });
       })
       .done();
+      */
   },
 
   render: function() {
@@ -70,45 +114,84 @@ var JetBlue = React.createClass({
     );
   },
 
-  renderMovie: function(movie) {
+  renderMovie: function(flight) {
     return (
-      <View style={styles.container}>
+      <View style={styles.flightItem}>
+        <Text style={styles.price}>${flight.price}</Text>
+
+        <Text style={[styles.text, styles.origin]}>{flight.tripData.origin.airportCode}</Text>
+
         <Image
-          source={{uri: movie.posters.thumbnail}}
-          style={styles.thumbnail}
+          source={{uri: 'http://i.imgur.com/113gexf.png'}} 
+          style={styles.arrowLogo} 
         />
-        <View style={styles.rightContainer}>
-          <Text style={styles.title}>{movie.title}</Text>
-          <Text style={styles.year}>{movie.year}</Text>
-        </View>
+
+        <Text style={[styles.text, styles.destination]}>{flight.tripData.destination.airportCode}</Text>
+        
+        <Text style={styles.date}>{flight.date}</Text>
       </View>
     );
   },
 });
 
+const WHITE = '#FFFFFF'
+
 var styles = StyleSheet.create({
-  container: {
+  text: {
+    color: WHITE,
+    fontWeight: 'bold'
+  },
+
+  price: {
+    color: WHITE,
+    fontSize: 20,
+    fontWeight: 'bold',
+    width: 100,
+    paddingLeft: 5
+  },
+
+  origin: {
+    textAlign: 'right',
+    width: 50
+  },
+
+  destination: {
+    textAlign: 'left',
+    width: 50
+  },
+
+  date: {
+    color: WHITE,
+    paddingRight: 5,
     flex: 1,
+    textAlign: 'right'
+  },
+
+  flightItem: {
+    paddingTop: 15,
+    paddingBottom: 15,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#0659A9',
+    borderWidth: 0.5,
+    borderColor: WHITE,
+    color: WHITE
   },
-  rightContainer: {
-    flex: 1,
-  },
+  
   title: {
     fontSize: 20,
     marginBottom: 8,
     textAlign: 'center',
   },
-  year: {
-    textAlign: 'center',
+
+  arrowLogo: {
+    width: 20,
+    height: 20,
+    marginLeft: 10,
+    marginRight: 10
   },
-  thumbnail: {
-    width: 53,
-    height: 81,
-  },
+
   listView: {
     paddingTop: 20,
     backgroundColor: '#F5FCFF',
