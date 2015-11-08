@@ -157,12 +157,18 @@ function getFlightsForUser(res, username, skip, size) {
 }
 
 // Secret.
-app.get('/api', function (req, res) {
+app.get('/api', function(req, res) {
   res.send('JetBlue Prize Winners\' API is running');
 });
 
+// Index. :)
+app.get('/', function(req, res) {
+  res.send('Welcome to iJetBlue! Please use the app, or access ' +
+      '/api/flights?user=&lt;user&gt;&size=&lt;size&gt;&skip=&lt;skip&gt;');
+});
+
 // Main API yo!
-app.get('/api/flights', function (req, res) {
+app.get('/api/flights', function(req, res) {
   var queryData = url.parse(req.url, true).query;
   var username = queryData.username;
   var skip = parseInt(queryData.skip || "0");
