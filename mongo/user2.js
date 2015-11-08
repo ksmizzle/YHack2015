@@ -8,17 +8,15 @@ jetblue.setProfilingLevel(2);
 cursor = jetblue.flights.aggregate([
     {
         $match: {
-            origincode: "ORD",
-            destinationtype: {
-                $in: ["Nightlife", "Romance", "Beach"]
+            origincode: "LAX",
+            destinationmarketgroup: "Northeast",
+            totalfare: {
+                $lt: 300
             },
             faretype: "POINTS",
-            totalfare: {
-                $lt: 500
-            },
             date: {
-                $gte: ISODate("2016-01-01T00:00:00Z"),
-                $lt: ISODate("2016-04-01T00:00:00Z")
+                $gte: ISODate("2016-02-02T00:00:00Z"),
+                $lt: ISODate("2016-02-03T00:00:00Z")
             }
         }
     },
@@ -37,12 +35,10 @@ cursor = jetblue.flights.aggregate([
             totalfare: true,
             weight: {
                 $add: [
-                    {$cond: [{$setIsSubset: [["Nightlife"], "$destinationtype"]}, 4, 0]},
-                    {$cond: [{$setIsSubset: [["Romance"], "$destinationtype"]}, 2, 0]},
-                    {$cond: [{$setIsSubset: [["Beach"], "$destinationtype"]}, 1, 0]},
-                    {$cond: [{$eq: ["Caribbean", "$destinationmarketgroup"]}, 4, 0]},
-                    {$cond: [{$eq: ["SouthSW", "$destinationmarketgroup"]}, 2, 0]},
-                    {$cond: [{$eq: ["California", "$destinationmarketgroup"]}, 1, 0]},
+                    {$cond: [{$setIsSubset: [["Family"], "$destinationtype"]}, 1, 0]},
+                    {$cond: [{$setIsSubset: [["Romance"], "$destinationtype"]}, 1, 0]},
+                    {$cond: [{$setIsSubset: [["Exploration"], "$destinationtype"]}, 1, 0]},
+                    {$cond: [{$eq: ["BOS", "$destinationcode"]}, 4, 0]},
                     {$subtract: [1, {$divide: ["$totalfare", 50000]}]},
                 ]
             }
