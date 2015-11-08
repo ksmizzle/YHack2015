@@ -9,7 +9,7 @@ cursor = jetblue.flights.aggregate([
     {
         $match: {
             origincode: "LAX",
-            originmarketgroup: "Northeast",
+            destinationmarketgroup: "Northeast",
             totalfare: {
                 $lt: 300
             },
