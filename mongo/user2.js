@@ -13,6 +13,7 @@ cursor = jetblue.flights.aggregate([
             totalfare: {
                 $lt: 300
             },
+            faretype: "POINTS",
             date: {
                 $gte: ISODate("2016-02-02T00:00:00Z"),
                 $lt: ISODate("2016-02-03T00:00:00Z")
@@ -51,7 +52,7 @@ cursor = jetblue.flights.aggregate([
 ])
 
 
-var count = 0;
+var count = 1;
 cursor.next();
 while ( cursor.hasNext() ) {
    printjson( cursor.next() );

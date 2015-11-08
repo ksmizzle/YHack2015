@@ -57,6 +57,7 @@ var getFlights = function(res, originCodeRequired,
 
     var match = {
         origincode: originCodeRequired || "",
+        faretype: "POINTS",
         totalfare: {
             $lte: maxFare
         },

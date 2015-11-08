@@ -16,6 +16,7 @@ var {
 } = React;
 
 var TagItems = require('./TagItems');
+var moment = require('moment');
 
 var FlightItem = React.createClass({
   getInitialState: function() {
@@ -37,18 +38,18 @@ var FlightItem = React.createClass({
       <TouchableOpacity onPress={this.onPress}>
     
         <View style={styles.flightItem}>
-          <Text style={styles.price}>${this.props.flight.price}</Text>
+          <Text style={styles.price}>${Math.round(this.props.flight.totalfare)}</Text>
 
-          <Text style={[styles.text, styles.origin]}>{this.props.flight.tripData.origin.airportCode}</Text>
+          <Text style={[styles.text, styles.origin]}>{this.props.flight.origincode}</Text>
 
           <Image
             source={{uri: 'http://i.imgur.com/113gexf.png'}} 
             style={styles.arrowLogo} 
           />
 
-          <Text style={[styles.text, styles.destination]}>{this.props.flight.tripData.destination.airportCode}</Text>
+          <Text style={[styles.text, styles.destination]}>{this.props.flight.destinationcode}</Text>
           
-          <Text style={styles.date}>{this.props.flight.date}</Text>
+          <Text style={styles.date}>{moment(this.props.flight.date).format('MMM. D')}</Text>
 
         </View>
 
@@ -61,28 +62,26 @@ var FlightItem = React.createClass({
       <TouchableOpacity onPress={this.onPress}>
     
         <View style={[styles.flightItem, styles.flightItemOpen]}>
-          <Text style={styles.price}>${this.props.flight.price}</Text>
+          <Text style={styles.price}>${this.props.flight.totalfare}</Text>
 
-          <Text style={[styles.text, styles.origin]}>{this.props.flight.tripData.origin.airportCode}</Text>
+          <Text style={[styles.text, styles.origin]}>{this.props.flight.origincode}</Text>
 
           <Image
             source={{uri: 'http://i.imgur.com/113gexf.png'}} 
             style={styles.arrowLogo} 
           />
 
-          <Text style={[styles.text, styles.destination]}>{this.props.flight.tripData.destination.airportCode}</Text>
+          <Text style={[styles.text, styles.destination]}>{this.props.flight.destinationcode}</Text>
           
-          <Text style={styles.date}>{this.props.flight.date}</Text>
+          <Text style={styles.date}>{moment(this.props.flight.date).format('MMM. D')}</Text>
 
         </View>
         <View style={[styles.flightItem, styles.flightItemOpenMiddle]}>
-          <Text style={styles.geographic}>{this.props.flight.tripData.destination.geographicRegion}, {this.props.flight.tripData.layover}</Text>
+          <Text style={styles.geographic}>{this.props.flight.destinationgeographicregion}, Nonstop</Text>
         </View>
         <View style={[styles.flightItem, styles.flightItemOpenLower]}>
-          <TagItems tags={this.props.flight.tripData.destinationType} />
+          <TagItems tags={this.props.flight.destinationtype} />
         </View>
-        
-
       </TouchableOpacity>
     );
   },
@@ -96,7 +95,7 @@ const WHITE = '#FFFFFF'
 
 var styles = StyleSheet.create({
   text: {
-    color: WHITE,
+    color: 'black',
     fontWeight: 'bold',
     fontFamily: 'DIN-Medium'
   },
@@ -113,12 +112,14 @@ var styles = StyleSheet.create({
 
   origin: {
     textAlign: 'right',
-    width: 50
+    width: 50,
+    color: WHITE
   },
 
   destination: {
     textAlign: 'left',
-    width: 50
+    width: 50,
+    color: WHITE
   },
 
   date: {
