@@ -9,6 +9,7 @@ cursor = jetblue.flights.aggregate([
     {
         $match: {
             origincode: "JFK",
+            faretype: "POINTS",
             destinationtype: {
                 $in: ["Beach", "Family", "Exploration"]
             },
@@ -48,7 +49,7 @@ cursor = jetblue.flights.aggregate([
 ])
 
 
-var count = 0;
+var count = 1;
 cursor.next();
 while ( cursor.hasNext() ) {
    printjson( cursor.next() );
