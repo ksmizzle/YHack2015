@@ -34,7 +34,7 @@ var FlightItem = React.createClass({
 
   renderClosed: function() {
     return (
-      <TouchableOpacity onPress={this.onPress.bind(this)}>
+      <TouchableOpacity onPress={this.onPress}>
     
         <View style={styles.flightItem}>
           <Text style={styles.price}>${this.props.flight.price}</Text>
@@ -58,7 +58,7 @@ var FlightItem = React.createClass({
 
   renderOpen: function() {
     return (
-      <TouchableOpacity onPress={this.onPress.bind(this)}>
+      <TouchableOpacity onPress={this.onPress}>
     
         <View style={[styles.flightItem, styles.flightItemOpen]}>
           <Text style={styles.price}>${this.props.flight.price}</Text>
