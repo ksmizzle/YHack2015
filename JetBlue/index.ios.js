@@ -12,7 +12,11 @@ var {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity
 } = React;
+
+var Testing = require('react-native').NativeModules.Testing;
+Testing.addEvent();
 
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
 var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
@@ -35,7 +39,7 @@ var JetBlue = React.createClass({
   },
 
   fetchData: function() {
-    const data = [
+    let data = [
       {
         date: "Jan. 19",
         price: 249,
@@ -71,6 +75,13 @@ var JetBlue = React.createClass({
         }
       }
     ]
+
+    data = data.concat(data)
+    data = data.concat(data)
+    data = data.concat(data)
+    data = data.concat(data)
+    data = data.concat(data)
+
 
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(data),
@@ -114,22 +125,28 @@ var JetBlue = React.createClass({
     );
   },
 
+  clickMe: function() {
+    alert('Hi!');
+  },
+
   renderMovie: function(flight) {
     return (
-      <View style={styles.flightItem}>
-        <Text style={styles.price}>${flight.price}</Text>
+      <TouchableOpacity onPress={this.clickMe.bind(this)}>
+        <View style={styles.flightItem}>
+          <Text style={styles.price}>${flight.price}</Text>
 
-        <Text style={[styles.text, styles.origin]}>{flight.tripData.origin.airportCode}</Text>
+          <Text style={[styles.text, styles.origin]}>{flight.tripData.origin.airportCode}</Text>
 
-        <Image
-          source={{uri: 'http://i.imgur.com/113gexf.png'}} 
-          style={styles.arrowLogo} 
-        />
+          <Image
+            source={{uri: 'http://i.imgur.com/113gexf.png'}} 
+            style={styles.arrowLogo} 
+          />
 
-        <Text style={[styles.text, styles.destination]}>{flight.tripData.destination.airportCode}</Text>
-        
-        <Text style={styles.date}>{flight.date}</Text>
-      </View>
+          <Text style={[styles.text, styles.destination]}>{flight.tripData.destination.airportCode}</Text>
+          
+          <Text style={styles.date}>{flight.date}</Text>
+        </View>
+      </TouchableOpacity>
     );
   },
 });
@@ -139,15 +156,18 @@ const WHITE = '#FFFFFF'
 var styles = StyleSheet.create({
   text: {
     color: WHITE,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: 'DIN-Medium'
   },
 
   price: {
     color: WHITE,
     fontSize: 20,
     fontWeight: 'bold',
-    width: 100,
-    paddingLeft: 5
+    width: 90,
+    paddingLeft: 10,
+    fontFamily: 'DIN-Medium',
+    paddingTop: 3
   },
 
   origin: {
@@ -162,9 +182,11 @@ var styles = StyleSheet.create({
 
   date: {
     color: WHITE,
-    paddingRight: 5,
+    paddingRight: 10,
     flex: 1,
-    textAlign: 'right'
+    textAlign: 'right',
+    fontFamily: 'DIN-Medium'
+
   },
 
   flightItem: {
