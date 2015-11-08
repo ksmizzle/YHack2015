@@ -1,0 +1,10 @@
+{
+  "whitelist": [
+    "es6.constants",
+    "es6.modules",
+    "es7.asyncFunctions",
+    "es7.classProperties",
+    "es7.decorators",
+    "regenerator"
+  ]
+}

@@ -11,8 +11,7 @@ var {
   ListView,
   StyleSheet,
   Text,
-  View,
-  TouchableOpacity
+  View
 } = React;
 
 var TagItem = require('./TagItem');

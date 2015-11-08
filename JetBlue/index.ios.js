@@ -11,20 +11,10 @@ var {
   ListView,
   StyleSheet,
   Text,
-  View,
-  TouchableOpacity
+  View
 } = React;
 
 var FlightItem = require('./FlightItem');
-
-var Testing = require('react-native').NativeModules.Testing;
-Testing.addEvent();
-
-var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
-var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
-var PAGE_SIZE = 25;
-var PARAMS = '?apikey=' + API_KEY + '&page_limit=' + PAGE_SIZE;
-var REQUEST_URL = API_URL + PARAMS;
 
 var JetBlue = React.createClass({
   getInitialState: function() {
@@ -33,6 +23,7 @@ var JetBlue = React.createClass({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
       loaded: false,
+      isLoadingTail: false
     };
   },
 
@@ -82,10 +73,9 @@ var JetBlue = React.createClass({
 
     data = data.concat(data)
     data = data.concat(data)
-    data = data.concat(data)
-    data = data.concat(data)
-    data = data.concat(data)
 
+    this.origData = data;
+    this.data = data;
 
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(data),
@@ -113,8 +103,9 @@ var JetBlue = React.createClass({
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderMovie}
+        renderRow={this.renderFlight}
         style={styles.listView}
+        onEndReached={this.onEndReached}
       />
     );
   },
@@ -129,15 +120,50 @@ var JetBlue = React.createClass({
     );
   },
 
-  renderMovie: function(flight) {
+  renderFlight: function(flight) {
     return <FlightItem flight={flight}/>;
   },
+
+  onEndReached: function() {
+    if (this.state.isLoadingTail) {
+      // We're already fetching
+      return;
+    }
+
+    this.setState({
+      isLoadingTail: true
+    });
+
+    this.setState({
+      isLoadingTail: false,
+      dataSource: this.getDataSource()
+    });
+  },
+
+  getDataSource: function() {
+    this.data = this.data.concat(this.origData);
+
+    return this.state.dataSource.cloneWithRows(this.data);
+  }
 });
 
 var styles = StyleSheet.create({
+  main: {
+    paddingTop: 20
+  },
+
   listView: {
-    paddingTop: 20,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFF',
+  },
+
+  container: {
+    paddingTop: 212,
+    flex: 1,
+    // remove width and height to override fixed static size
+    width: null,
+    height: 100,
+    // make the background transparent so you actually see the image
+    backgroundColor: 'transparent',
   }
 });
 

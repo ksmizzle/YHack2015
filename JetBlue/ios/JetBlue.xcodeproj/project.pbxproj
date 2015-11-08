@@ -22,11 +22,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		EF69CD771BEEC16200510D55 /* DIN-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF69CD741BEEC16200510D55 /* DIN-Bold.ttf */; settings = {ASSET_TAGS = (); }; };
-		EF69CD781BEEC16200510D55 /* DIN-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF69CD751BEEC16200510D55 /* DIN-Light.ttf */; settings = {ASSET_TAGS = (); }; };
-		EF69CD791BEEC16200510D55 /* DIN-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF69CD761BEEC16200510D55 /* DIN-Medium.ttf */; settings = {ASSET_TAGS = (); }; };
-		EF69CD811BEECD2A00510D55 /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF69CD801BEECD2A00510D55 /* Testing.swift */; settings = {ASSET_TAGS = (); }; };
-		EF69CD831BEECE3000510D55 /* TestingBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69CD821BEECE3000510D55 /* TestingBridge.m */; settings = {ASSET_TAGS = (); }; };
+		EFB3FC341BEF326C0009E884 /* DIN-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFB3FC311BEF326C0009E884 /* DIN-Bold.ttf */; settings = {ASSET_TAGS = (); }; };
+		EFB3FC351BEF326C0009E884 /* DIN-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFB3FC321BEF326C0009E884 /* DIN-Light.ttf */; settings = {ASSET_TAGS = (); }; };
+		EFB3FC361BEF326C0009E884 /* DIN-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFB3FC331BEF326C0009E884 /* DIN-Medium.ttf */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,12 +129,9 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		EF69CD741BEEC16200510D55 /* DIN-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Bold.ttf"; sourceTree = "<group>"; };
-		EF69CD751BEEC16200510D55 /* DIN-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Light.ttf"; sourceTree = "<group>"; };
-		EF69CD761BEEC16200510D55 /* DIN-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Medium.ttf"; sourceTree = "<group>"; };
-		EF69CD801BEECD2A00510D55 /* Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
-		EF69CD821BEECE3000510D55 /* TestingBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingBridge.m; sourceTree = "<group>"; };
-		EF69CD841BEECE9E00510D55 /* JetBlue-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JetBlue-Bridging-Header.h"; sourceTree = "<group>"; };
+		EFB3FC311BEF326C0009E884 /* DIN-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Bold.ttf"; sourceTree = "<group>"; };
+		EFB3FC321BEF326C0009E884 /* DIN-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Light.ttf"; sourceTree = "<group>"; };
+		EFB3FC331BEF326C0009E884 /* DIN-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,10 +293,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				EF69CD841BEECE9E00510D55 /* JetBlue-Bridging-Header.h */,
-				EF69CD821BEECE3000510D55 /* TestingBridge.m */,
-				EF69CD801BEECD2A00510D55 /* Testing.swift */,
-				EF69CD691BEEC07F00510D55 /* Fonts */,
+				EFB3FC261BEF32540009E884 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* JetBlue */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* JetBlueTests */,
@@ -320,12 +312,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EF69CD691BEEC07F00510D55 /* Fonts */ = {
+		EFB3FC261BEF32540009E884 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				EF69CD741BEEC16200510D55 /* DIN-Bold.ttf */,
-				EF69CD751BEEC16200510D55 /* DIN-Light.ttf */,
-				EF69CD761BEEC16200510D55 /* DIN-Medium.ttf */,
+				EFB3FC311BEF326C0009E884 /* DIN-Bold.ttf */,
+				EFB3FC321BEF326C0009E884 /* DIN-Light.ttf */,
+				EFB3FC331BEF326C0009E884 /* DIN-Medium.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -375,7 +367,6 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
@@ -532,10 +523,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				EF69CD791BEEC16200510D55 /* DIN-Medium.ttf in Resources */,
-				EF69CD771BEEC16200510D55 /* DIN-Bold.ttf in Resources */,
+				EFB3FC351BEF326C0009E884 /* DIN-Light.ttf in Resources */,
+				EFB3FC341BEF326C0009E884 /* DIN-Bold.ttf in Resources */,
+				EFB3FC361BEF326C0009E884 /* DIN-Medium.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				EF69CD781BEEC16200510D55 /* DIN-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,8 +562,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF69CD811BEECD2A00510D55 /* Testing.swift in Sources */,
-				EF69CD831BEECE3000510D55 /* TestingBridge.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -642,7 +631,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				DEAD_CODE_STRIPPING = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -653,9 +641,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = JetBlue;
-				SWIFT_OBJC_BRIDGING_HEADER = "JetBlue-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -663,7 +648,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -673,8 +657,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = JetBlue;
-				SWIFT_OBJC_BRIDGING_HEADER = "JetBlue-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
