@@ -50,7 +50,8 @@ var FlightModel = mongoose.model('Flight', Flight);
 var getFlights = function(res, originCodeRequired,
     destinationMarketGroupRequired, destinationTypesRequired,
     maxFare, dateStart, dateEnd, destinationTypesPreferred,
-    destinationMarketGroupsPreferred, destinationCodePreferred) {
+    destinationMarketGroupsPreferred, destinationCodePreferred,
+    skip, size) {
 
     var pricePref = {$subtract: [1, {$divide: ["$totalfare", 50000]}]};
 
@@ -114,6 +115,12 @@ var getFlights = function(res, originCodeRequired,
             $sort: {
                 weight: -1
             }
+        },
+        {
+            $skip: skip
+        },
+        {
+            $limit: size
         }
     ], function(err, result) {
         if (err) {
@@ -126,22 +133,23 @@ var getFlights = function(res, originCodeRequired,
     });
 };
 
-function getFlightsForUser(username, res) {
+function getFlightsForUser(res, username, skip, size) {
     switch (username) {
         case "user1":
             return getFlights(res, "ORD", null, ["Nightlife", "Romance", "Beach"],
                 500, "2016-01-01T00:00:00Z", "2016-04-01T00:00:00Z",
                 [["Nightlife", 4], ["Romance", 2], ["Beach", 1]],
-                [["Caribbean", 4], ["SouthSW", 2], ["California", 1]], null);
+                [["Caribbean", 4], ["SouthSW", 2], ["California", 1]], null,
+                skip, size);
         case "user2":
             return getFlights(res, "LAX", "Northeast", null, 300,
                 "2016-02-02T00:00:00Z", "2016-02-03T00:00:00Z",
                 [["Family", 1], ["Romance", 1], ["Exploration", 1]],
-                [], ["Boston", 4]);
+                [], ["Boston", 4], skip, size);
         case "user3":
             return getFlights(res, "JFK", null, ["Beach", "Family", "Exploration"],
                 150, null, null, [["Beach", 4], ["Family", 2], ["Exploration", 1]],
-                [], null);
+                [], null, skip, size);
         default:
             return res.send("Invalid username");
     }
@@ -153,11 +161,13 @@ app.get('/api', function (req, res) {
 });
 
 // Main API yo!
-app.get('/api/flights', function (req, res){
+app.get('/api/flights', function (req, res) {
   var queryData = url.parse(req.url, true).query;
   var username = queryData.username;
+  var skip = parseInt(queryData.skip || "0");
+  var size = parseInt(queryData.size || "10");
 
-  return getFlightsForUser(username, res);
+  return getFlightsForUser(res, username, skip, size);
 });
 
 
