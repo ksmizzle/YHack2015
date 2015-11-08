@@ -7,6 +7,8 @@ algorithm. It also comes with a native iOS and Android app, which lets
 users seamlessly and infinitely scroll through selected flights until one
 meets their preferences.
 
+![Screenshot](http://i.imgur.com/WhxtBed.png)
+
 ## Users
 Per challenge specifications, iJetBlue comes pre-set with three users:
 
