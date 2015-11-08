@@ -32,10 +32,11 @@ var styles = StyleSheet.create({
     backgroundColor: 'orange',
     color: WHITE,
     fontFamily: 'DIN-Medium',
-    marginLeft: 7,
-    marginRight: 7,
+    marginLeft: 5,
+    marginRight: 5,
     padding: 5,
-    borderRadius: 2
+    borderRadius: 2,
+    fontSize: 11
   }
 });
 

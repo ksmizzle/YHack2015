@@ -62,7 +62,7 @@ var FlightItem = React.createClass({
       <TouchableOpacity onPress={this.onPress}>
     
         <View style={[styles.flightItem, styles.flightItemOpen]}>
-          <Text style={styles.price}>${this.props.flight.totalfare}</Text>
+          <Text style={styles.price}>${Math.round(this.props.flight.totalfare)}</Text>
 
           <Text style={[styles.text, styles.origin]}>{this.props.flight.origincode}</Text>
 

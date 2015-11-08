@@ -46,7 +46,6 @@ var JetBlue = React.createClass({
       .then((response) => response.json())
       .then((responseData) => {
         this._data = this._data.concat(responseData);
-        console.log(this._data);
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(this._data),
           loaded: true,
@@ -66,6 +65,7 @@ var JetBlue = React.createClass({
       <View style={{flex: 1, backgroundColor: '#0659A9'}}>
         <View style={styles.top}>
           <FlightDropdown setUser={this.setUser}/>
+          
           
         </View>
         
@@ -111,8 +111,14 @@ var JetBlue = React.createClass({
   },
 
   setUser: function(user) {
-    alert(user);
-    this.setState({user});
+    this.setState({
+      user: user, 
+      skip: 0, 
+      loaded: false
+    });
+
+    this._data = [];
+    this.fetchData();
   }
 });
 

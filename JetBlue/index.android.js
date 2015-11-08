@@ -33,7 +33,7 @@ var JetBlue = React.createClass({
     };
   },
 
-  componentDidMount: function() {
+  componentWillMount: function() {
     this.fetchData();
   },
 
