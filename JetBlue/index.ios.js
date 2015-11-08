@@ -11,19 +11,28 @@ var {
   ListView,
   StyleSheet,
   Text,
-  View
+  View,
+  ScrollView
 } = React;
 
 var FlightItem = require('./FlightItem');
+var FlightDropdown = require('./FlightDropdown');
+var InfiniteScrollView = require('react-native-infinite-scroll-view');
+var DEFAULT_SIZE = 20;
 
+var REQUEST_URL = "http://162.243.8.248:3000/api/flights?"
 var JetBlue = React.createClass({
   getInitialState: function() {
+    this._data = [];
+
     return {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
       loaded: false,
-      isLoadingTail: false
+      isLoadingTail: false,
+      user: 'user1',
+      skip: 0
     };
   },
 
@@ -32,67 +41,20 @@ var JetBlue = React.createClass({
   },
 
   fetchData: function() {
-    let data = [
-      {
-        date: "Jan. 19",
-        price: 249,
-        tripData: {
-          origin: {
-            airportCode: "BOS",
-            geographicRegion: "Northeast",
-            marketGroup: "East Coast"
-          },
-          destination: {
-            airportCode: "IAD",
-            geographicRegion: "Mid-Atlantic",
-            marketGroup: "East Coast"
-          },
-          destinationType: ["Family", "Exploration", "Beach"],
-          layover: "Nonstop"
-        }
-      },
-      {
-        date: "Feb. 4",
-        price: 125,
-        tripData: {
-          origin: {
-            airportCode: "ORD",
-            geographicRegion: "Midwest",
-            marketGroup: "Middle"
-          },
-          destination: {
-            airportCode: "SFO",
-            geographicRegion: "California",
-            marketGroup: "West Coast"
-          },
-          destinationType: ["Romance", "Nightlife"],
-          layover: "Nonstop"
-        }
-      }
-    ]
-
-    data = data.concat(data)
-    data = data.concat(data)
-
-    this.origData = data;
-    this.data = data;
-
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(data),
-      loaded: true
-    })
-
-    /*
-    fetch(REQUEST_URL)
+    console.log(REQUEST_URL + 'username=' + this.state.user + '&size=' + DEFAULT_SIZE + '&skip=' + this.state.skip);
+    fetch(REQUEST_URL + 'username=' + this.state.user + '&size=' + DEFAULT_SIZE + '&skip=' + this.state.skip)
       .then((response) => response.json())
       .then((responseData) => {
+        this._data = this._data.concat(responseData);
+        console.log(this._data);
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
+          dataSource: this.state.dataSource.cloneWithRows(this._data),
           loaded: true,
         });
+
+        this.state.skip += DEFAULT_SIZE;
       })
       .done();
-      */
   },
 
   render: function() {
@@ -101,12 +63,19 @@ var JetBlue = React.createClass({
     }
 
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderFlight}
-        style={styles.listView}
-        onEndReached={this.onEndReached}
-      />
+      <View style={{flex: 1, backgroundColor: '#0659A9'}}>
+        <View style={styles.top}>
+          <FlightDropdown setUser={this.setUser}/>
+          
+        </View>
+        
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderFlight}
+          style={styles.listView}
+          onEndReached={this.onEndReached} />
+      </View>
+      
     );
   },
 
@@ -114,7 +83,7 @@ var JetBlue = React.createClass({
     return (
       <View style={styles.container}>
         <Text>
-          Loading movies...
+          Loading flights...
         </Text>
       </View>
     );
@@ -135,36 +104,36 @@ var JetBlue = React.createClass({
     });
 
     this.setState({
-      isLoadingTail: false,
-      dataSource: this.getDataSource()
+      isLoadingTail: false
     });
+
+    this.fetchData()
   },
 
-  getDataSource: function() {
-    this.data = this.data.concat(this.origData);
-
-    return this.state.dataSource.cloneWithRows(this.data);
+  setUser: function(user) {
+    alert(user);
+    this.setState({user});
   }
 });
 
 var styles = StyleSheet.create({
-  main: {
-    paddingTop: 20
-  },
 
-  listView: {
-    backgroundColor: '#FFF',
+  top: {
+    paddingTop: 20,
+    height: 200,
+    backgroundColor: 'white'
   },
-
   container: {
-    paddingTop: 212,
     flex: 1,
     // remove width and height to override fixed static size
     width: null,
-    height: 100,
+    height: null,
     // make the background transparent so you actually see the image
     backgroundColor: 'transparent',
-  }
+  },
+  listView: {
+    backgroundColor: '#0659A9',
+  },
 });
 
 AppRegistry.registerComponent('JetBlue', () => JetBlue);
