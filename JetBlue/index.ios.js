@@ -15,6 +15,8 @@ var {
   TouchableOpacity
 } = React;
 
+var FlightItem = require('./FlightItem');
+
 var Testing = require('react-native').NativeModules.Testing;
 Testing.addEvent();
 
@@ -54,7 +56,8 @@ var JetBlue = React.createClass({
             geographicRegion: "Mid-Atlantic",
             marketGroup: "East Coast"
           },
-          destinationType: "Family"
+          destinationType: ["Family", "Exploration", "Beach"],
+          layover: "Nonstop"
         }
       },
       {
@@ -71,7 +74,8 @@ var JetBlue = React.createClass({
             geographicRegion: "California",
             marketGroup: "West Coast"
           },
-          destinationType: "Romance"
+          destinationType: ["Romance", "Nightlife"],
+          layover: "Nonstop"
         }
       }
     ]
@@ -125,99 +129,16 @@ var JetBlue = React.createClass({
     );
   },
 
-  clickMe: function() {
-    alert('Hi!');
-  },
-
   renderMovie: function(flight) {
-    return (
-      <TouchableOpacity onPress={this.clickMe.bind(this)}>
-        <View style={styles.flightItem}>
-          <Text style={styles.price}>${flight.price}</Text>
-
-          <Text style={[styles.text, styles.origin]}>{flight.tripData.origin.airportCode}</Text>
-
-          <Image
-            source={{uri: 'http://i.imgur.com/113gexf.png'}} 
-            style={styles.arrowLogo} 
-          />
-
-          <Text style={[styles.text, styles.destination]}>{flight.tripData.destination.airportCode}</Text>
-          
-          <Text style={styles.date}>{flight.date}</Text>
-        </View>
-      </TouchableOpacity>
-    );
+    return <FlightItem flight={flight}/>;
   },
 });
 
-const WHITE = '#FFFFFF'
-
 var styles = StyleSheet.create({
-  text: {
-    color: WHITE,
-    fontWeight: 'bold',
-    fontFamily: 'DIN-Medium'
-  },
-
-  price: {
-    color: WHITE,
-    fontSize: 20,
-    fontWeight: 'bold',
-    width: 90,
-    paddingLeft: 10,
-    fontFamily: 'DIN-Medium',
-    paddingTop: 3
-  },
-
-  origin: {
-    textAlign: 'right',
-    width: 50
-  },
-
-  destination: {
-    textAlign: 'left',
-    width: 50
-  },
-
-  date: {
-    color: WHITE,
-    paddingRight: 10,
-    flex: 1,
-    textAlign: 'right',
-    fontFamily: 'DIN-Medium'
-
-  },
-
-  flightItem: {
-    paddingTop: 15,
-    paddingBottom: 15,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#0659A9',
-    borderWidth: 0.5,
-    borderColor: WHITE,
-    color: WHITE
-  },
-  
-  title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-
-  arrowLogo: {
-    width: 20,
-    height: 20,
-    marginLeft: 10,
-    marginRight: 10
-  },
-
   listView: {
     paddingTop: 20,
     backgroundColor: '#F5FCFF',
-  },
+  }
 });
 
 AppRegistry.registerComponent('JetBlue', () => JetBlue);
